@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import Logo from '../assets/lbc-logo.webp';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Home.module.scss';
 
 function Home() {
   const year = new Date().getFullYear();

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import type { Conversation } from '../types/conversation';
 
 export default function Conversations() {
@@ -22,10 +23,10 @@ export default function Conversations() {
    */
   function loadConversations(): void {
     const userId: number = 1;
-    fetch(`http://localhost:3005/conversations/${userId}`)
-      .then((response) => response.json())
-      .then((conversations: Conversation[]) => {
-        setConversations(conversations);
+    axios.get(`http://localhost:3005/conversations/${userId}`)
+      .then((response) => {
+        const conversationsList: Conversation[] = response.data;
+        setConversations(conversationsList);
       });
   }
 }

@@ -8,7 +8,9 @@
     "start": "next start",
     "start-server": "json-server --watch src/server/db.json --routes src/server/routes.json --middlewares src/server/middleware/conversations.js --port 3005",
     "test": "jest",
-    "lint": "next lint --no-error-on-unmatched-pattern"
+    "lint": "next lint --no-error-on-unmatched-pattern",
+    "tslint": "npx eslint src/**",
+    "fix": "npx eslint src/** --fix"
   },
   "engines": {
     "node": ">=14.17.2"
@@ -24,9 +26,16 @@
     "@testing-library/react": "^12.0.0",
     "@types/node": "^16.6.1",
     "@types/react": "^17.0.18",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
     "babel-jest": "^27.0.6",
     "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "^11.1.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.4.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.0.6",
     "json-server": "^0.16.3",

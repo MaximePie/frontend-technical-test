@@ -5,7 +5,7 @@ describe('App', () => {
   it('should render correctly App', () => {
     render(<App />);
     expect(
-      screen.getByText(/Welcome/),
+      screen.getByText(/leboncoin/),
     ).toBeInTheDocument();
   });
 });

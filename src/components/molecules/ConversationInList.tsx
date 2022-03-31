@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
+import Avatar from 'react-avatar';
 import { Conversation } from '../../types/conversation';
-import Avatar from '../atoms/Avatar';
 
 interface ConversationInListProps {
   conversation: Conversation,
@@ -17,11 +17,19 @@ export default function ConversationInList(props: ConversationInListProps) {
     lastMessageTimestamp,
   } = conversation;
 
+  const contactUsername = username();
+
   return (
     <div className="ConversationInList">
-      <Avatar username={username()} />
+      <Avatar
+        name={contactUsername}
+        alt={contactUsername}
+        round="100px"
+        size="50"
+
+      />
       <div className="ConversationInList__details">
-        <div className="ConversationInList__recipientNickname">{username()}</div>
+        <div className="ConversationInList__recipientNickname">{contactUsername}</div>
         <div className="ConversationInList__date">{date()}</div>
       </div>
     </div>

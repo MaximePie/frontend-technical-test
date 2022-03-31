@@ -25,8 +25,7 @@ export default function ConversationInList(props: ConversationInListProps) {
         name={contactUsername}
         alt={contactUsername}
         round="100px"
-        size="50"
-
+        size="50px"
       />
       <div className="ConversationInList__details">
         <div className="ConversationInList__recipientNickname">{contactUsername}</div>

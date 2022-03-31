@@ -13,4 +13,24 @@
   padding: 1.5em;
   margin: 1.5em 0;
   align-items: center;
+
+  // Behaviour
+  transition: background-color .25s ease-in-out;
+
+  &:hover {
+    background-color: $hoveredWhiteElement;
+    transition: background-color .25s ease-in-out;
+    cursor: pointer;
+  }
+
+  &__details {
+    // Content
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-row-gap: .5em;
+
+    .ConversationInList__date {
+      color: $textColorLight;
+    }
+  }
 }

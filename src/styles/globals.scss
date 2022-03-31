@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 $primaryColor: #2191f3;
 $secondaryColor: #e8e8ea;
 $textColor: #1e1e20;
+$textColorLight: #b1b1b1;
+$hoveredWhiteElement: #f4f4f4;
+
+$textFont : 'Roboto', sans-serif;
 
 @import "./ConversationInList";

@@ -1,3 +1,4 @@
+import React from 'react';
 import type { AppProps } from 'next/app';
 import { getLoggedUserId } from '../utils/getLoggedUserId';
 import '../styles/globals.scss';
@@ -6,7 +7,11 @@ import '../styles/globals.scss';
 export const loggedUserId = getLoggedUserId();
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <div suppressHydrationWarning>
+      {typeof window === 'undefined' ? null : <Component {...pageProps} />}
+    </div>
+  );
 }
 
 export default MyApp;

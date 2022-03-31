@@ -16,7 +16,6 @@ export default function Conversations() {
       <h4>Conversations</h4>
       {conversations.map((conversation) => (
         <div>
-          {JSON.stringify(conversation)}
           <ConversationInList
             conversation={conversation}
             key={conversation.id}

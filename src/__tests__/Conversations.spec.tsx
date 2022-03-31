@@ -8,6 +8,7 @@ describe('Conversations', () => {
     render(<Conversations />);
     expect(
       screen.getByText(/Conversations/),
+    // @ts-ignore
     ).toBeInTheDocument();
   });
 });

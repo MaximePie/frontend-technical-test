@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import type { Conversation } from '../types/conversation';
+import ConversationInList from '../components/molecules/ConversationInList';
+
+const connectedUserId: number = 1;
 
 export default function Conversations() {
   useEffect(loadConversations, []);
@@ -12,7 +15,14 @@ export default function Conversations() {
     <div className="Conversations">
       <h4>Conversations</h4>
       {conversations.map((conversation) => (
-        <div>{JSON.stringify(conversation)}</div>
+        <div>
+          {JSON.stringify(conversation)}
+          <ConversationInList
+            conversation={conversation}
+            key={conversation.id}
+            connectedUserId={connectedUserId}
+          />
+        </div>
       ))}
     </div>
   );
@@ -22,8 +32,7 @@ export default function Conversations() {
    * And display it on the page once it's done.
    */
   function loadConversations(): void {
-    const userId: number = 1;
-    axios.get(`http://localhost:3005/conversations/${userId}`)
+    axios.get(`http://localhost:3005/conversations/${connectedUserId}`)
       .then((response) => {
         const conversationsList: Conversation[] = response.data;
         setConversations(conversationsList);

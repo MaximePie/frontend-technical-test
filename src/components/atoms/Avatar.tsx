@@ -19,8 +19,10 @@ export default function Avatar({ username }: AvatarProps) {
    * Returns the first letter of the username
    * to display it instead of the avatar image
    * The character is set to uppercase
+   *
+   * @return string The First letter of the username
    */
-  function avatarFromUsername() {
+  function avatarFromUsername(): string {
     return username.charAt(0).toUpperCase();
   }
 }

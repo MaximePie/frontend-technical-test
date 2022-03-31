@@ -25,5 +25,6 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': ['error', { functions: false }],
     'import/extensions': [0],
     'import/no-unresolved': [0],
+    'no-undef': 'off',
   },
 };

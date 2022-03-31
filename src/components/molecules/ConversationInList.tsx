@@ -1,6 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import Avatar from 'react-avatar';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { Conversation } from '../../types/conversation';
 
 interface ConversationInListProps {
@@ -10,6 +12,8 @@ interface ConversationInListProps {
 
 export default function ConversationInList(props: ConversationInListProps) {
   const { conversation, connectedUserId } = props;
+  const router = useRouter();
+
   const {
     senderId,
     recipientNickname,
@@ -20,19 +24,28 @@ export default function ConversationInList(props: ConversationInListProps) {
   const contactUsername = username();
 
   return (
-    <div className="ConversationInList">
-      <Avatar
-        name={contactUsername}
-        alt={contactUsername}
-        round="100px"
-        size="50px"
-      />
-      <div className="ConversationInList__details">
-        <div className="ConversationInList__recipientNickname">{contactUsername}</div>
-        <div className="ConversationInList__date">{date()}</div>
+    <Link href="/conversation/[id]" as={`/conversation/${conversation.id}`}>
+      <div className="ConversationInList">
+        <Avatar
+          name={contactUsername}
+          alt={contactUsername}
+          round="100px"
+          size="50px"
+        />
+        <div className="ConversationInList__details">
+          <div className="ConversationInList__recipientNickname">{contactUsername}</div>
+          <div className="ConversationInList__date">{date()}</div>
+        </div>
       </div>
-    </div>
+    </Link>
   );
+
+  /**
+   * Opens the conversation page associated to this conversation ID
+   */
+  function openConversation(): void {
+    router.push('/conversation/[id]', `/conversation/${conversation.id}`);
+  }
 
   /**
    * Return the contact's username.

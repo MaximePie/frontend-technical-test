@@ -11,6 +11,17 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/conversations',
+        permanent: true,
+      },
+    ];
+  },
+
   async rewrites() {
     return [
       // Rewrite everything else to use `pages/index`

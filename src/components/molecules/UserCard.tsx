@@ -7,9 +7,10 @@ import { userContext } from '../../contexts/UserContext';
 
 interface UserCardProps {
   user: User,
+  actionText: string | null,
 }
 
-export default function UserCard({ user }: UserCardProps) {
+export default function UserCard({ user, actionText }: UserCardProps) {
   const { id, nickname, image } = user;
   const { setId: setLoggedInUserId } = useContext(userContext);
   const router = useRouter();
@@ -18,7 +19,7 @@ export default function UserCard({ user }: UserCardProps) {
     <div className="UserCard">
       <Avatar round="100px" className="UserCard__avatar" alt={nickname} name={nickname} src={image} />
       <h4>{nickname}</h4>
-      <button type="button" className="UserCard__login" onClick={loginAsUser}>Se connecter</button>
+      <button type="button" className="UserCard__login" onClick={loginAsUser}>{actionText || 'Login'}</button>
     </div>
   );
 

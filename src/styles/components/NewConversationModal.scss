@@ -1,0 +1,23 @@
+.NewConversationModal {
+
+  // Positioning
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  // Shape
+  width: 800px;
+  height: 500px;
+  background-color: $white;
+  border-radius: 4px;
+
+  // Content
+  display: grid;
+  grid-template-rows: 80px 1fr;
+  justify-content: center;
+}
+
+.ReactModal__Overlay {
+  background-color: $darkBackgroundColor !important;
+}

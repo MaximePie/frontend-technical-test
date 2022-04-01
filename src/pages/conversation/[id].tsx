@@ -3,6 +3,7 @@ import { getLoggedUserId } from '../../utils/getLoggedUserId';
 import Layout from '../../components/layouts/layout';
 import ConversationHeader from '../../components/molecules/ConversationHeader';
 import Message from '../../components/atoms/Message';
+import ConversationTextInput from '../../components/atoms/ConversationTextInput';
 import type { Conversation as ConversationType } from '../../types/conversation';
 import type { Message as MessageType } from '../../types/message';
 import APIManager from '../../server/APIManager';
@@ -51,9 +52,18 @@ export default function Conversation(props: ConversationProps) {
             />
           ))}
         </div>
+        <ConversationTextInput onMessageSend={sendMessage} />
       </div>
     </Layout>
   );
+
+  /**
+   * Send the message to server
+   * then fetch the details
+   * @param message
+   */
+  function sendMessage(message: string) {
+  }
 
   /**
    * Fetch the details from the conversation according to the user ID.

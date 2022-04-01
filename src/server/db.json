@@ -80,7 +80,8 @@
     {
       "id": 1,
       "nickname": "Thibaut",
-      "token": "xxxx"
+      "token": "xxxx",
+      "image": "https://www.nautiljon.com/images/perso/00/81/franky_1818.jpg"
     },
     {
       "id": 2,
@@ -95,7 +96,8 @@
     {
       "id": 4,
       "nickname": "Elodie",
-      "token": "xxxx"
+      "token": "xxxx",
+      "image": "https://img.lemde.fr/2019/05/17/0/0/3553/2542/664/0/75/0/74a2a9f_91ae3c37d18b44d4ae49147a7b9a2126-91ae3c37d18b44d4ae49147a7b9a2126-0.jpg"
     }
   ]
 }

@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import moment from 'moment';
 import ConversationInList from '../components/molecules/ConversationInList';
 import { Conversation } from '../types/conversation';
-import { getLoggedUserId } from '../utils/getLoggedUserId';
+import { user } from '../utils/UserContext';
 
 const conversationStartedByUser: Conversation = {
   id: 1,
@@ -29,7 +29,7 @@ describe('Conversation in List', () => {
     render(
       <ConversationInList
         conversation={conversationStartedByUser}
-        connectedUserId={getLoggedUserId()}
+        connectedUserId={user()}
       />,
     );
     const expectedInitial = conversationStartedByUser.recipientNickname;
@@ -44,7 +44,7 @@ describe('Conversation in List', () => {
     render(
       <ConversationInList
         conversation={conversation}
-        connectedUserId={getLoggedUserId()}
+        connectedUserId={user()}
       />,
     );
 
@@ -58,7 +58,7 @@ describe('Conversation in List', () => {
     render(
       <ConversationInList
         conversation={conversation}
-        connectedUserId={getLoggedUserId()}
+        connectedUserId={user()}
       />,
     );
 
@@ -74,7 +74,7 @@ describe('Conversation in List', () => {
     render(
       <ConversationInList
         conversation={conversation}
-        connectedUserId={getLoggedUserId()}
+        connectedUserId={user()}
       />,
     );
     const actualTime = document.querySelector('.ConversationInList__date');

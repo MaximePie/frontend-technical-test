@@ -1,14 +1,13 @@
 import React from 'react';
 import type { AppProps } from 'next/app';
-import { getLoggedUserId } from '../utils/getLoggedUserId';
 import '../styles/globals.scss';
-
-// Default way to get a logged user
-export const loggedUserId = getLoggedUserId();
+import { UserContextProvider } from '../contexts/UserContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Component {...pageProps} />
+    <UserContextProvider>
+      <Component {...pageProps} />
+    </UserContextProvider>
   );
 }
 

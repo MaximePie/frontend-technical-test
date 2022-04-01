@@ -2,7 +2,7 @@ import React from 'react';
 import { describe, it, expect } from '@jest/globals';
 import { render, screen } from '@testing-library/react';
 import Message from '../components/atoms/Message';
-import { getLoggedUserId } from '../utils/getLoggedUserId';
+import { user } from '../utils/UserContext';
 import { Message as MessageType } from '../types/message';
 
 const messageSentByDonkey: MessageType = {
@@ -29,7 +29,7 @@ describe('Message', () => {
       <Message
         message={messageSentByDonkey}
         contactUsername={contact}
-        isSentByUser={getLoggedUserId() === messageSentByDonkey.authorId}
+        isSentByUser={user() === messageSentByDonkey.authorId}
       />,
     );
 
@@ -44,7 +44,7 @@ describe('Message', () => {
       <Message
         message={messageSentByUser}
         contactUsername={contact}
-        isSentByUser={getLoggedUserId() === messageSentByUser.authorId}
+        isSentByUser={user() === messageSentByUser.authorId}
       />,
     );
     const messageElement = document.querySelector('.Message');
@@ -57,7 +57,7 @@ describe('Message', () => {
       <Message
         message={messageSentByDonkey}
         contactUsername={contact}
-        isSentByUser={getLoggedUserId() === messageSentByDonkey.authorId}
+        isSentByUser={user() === messageSentByDonkey.authorId}
       />,
     );
     const messageElement = document.querySelector('.Message');

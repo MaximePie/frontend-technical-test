@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import type { Conversation } from '../../types/conversation';
 import ConversationInList from '../../components/molecules/ConversationInList';
 import Layout from '../../components/layouts/layout';
 import APIManager from '../../server/APIManager';
 import Routes from '../../utils/routes';
-
-const connectedUserId: number = 1;
+import { userContext } from '../../contexts/UserContext';
 
 export default function Index() {
   useEffect(loadConversations, []);
+
+  const { id: connectedUserId } = useContext(userContext);
+  console.log(connectedUserId);
 
   // This is the list of all conversations
   const [conversations, setConversations] = useState<Conversation[]>([]);

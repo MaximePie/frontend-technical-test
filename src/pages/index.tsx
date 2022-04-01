@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../components/layouts/layout';
+import { User } from '../types/user';
+import Routes from '../utils/routes';
+import APIManager from '../server/APIManager';
+import UserCard from '../components/molecules/UserCard';
 
 function Home() {
+  const [users, setUsers] = useState<User[]>([]);
+  useEffect(fetchUsers, []);
   return (
     <Layout>
-      <h4>This is the Home Page</h4>
+      <>
+        <h4>Welcome! Wait... who are you, yet?</h4>
+        {users.map((user) => <UserCard key={user.id} user={user} />)}
+      </>
     </Layout>
   );
+
+  /**
+   * Fetch the user's list and update the users state
+   * with the retrieved results
+   */
+  function fetchUsers(): void {
+    APIManager.getFromServer(Routes.USERS).then((response) => {
+      if (response.data) {
+        setUsers(response.data);
+      }
+    });
+  }
 }
 
 export default Home;

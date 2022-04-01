@@ -7,6 +7,7 @@ import UserCard from '../../components/molecules/UserCard';
 
 export default function Users() {
   const [users, setUsers] = useState<User[]>([]);
+  const [isLoading, setLoadingState] = useState<bool>(false);
   useEffect(fetchUsers, []);
   return (
     <Layout>
@@ -14,17 +15,33 @@ export default function Users() {
         <h2 className="Users__header">Welcome! Wait... who are you, yet?</h2>
         <div className="Users">
           {users.map((user) => <UserCard key={user.id} user={user} />)}
+          {!isLoading && !users.length && (
+            <div>
+              <p>There are no User for the moment.</p>
+              <button onClick={createUsers}>Create 4 users</button>
+            </div>
+          )}
         </div>
       </>
     </Layout>
   );
 
   /**
+   * Will call the database to create more users
+   * and refresh the content
+   */
+  function createUsers() {
+    APIManager.getFromServer(Routes.CREATE_USERS).then(fetchUsers);
+  }
+
+  /**
    * Fetch the user's list and update the users state
    * with the retrieved results
    */
   function fetchUsers(): void {
+    setLoadingState(true);
     APIManager.getFromServer(Routes.USERS).then((response) => {
+      setLoadingState(false);
       if (response.data) {
         setUsers(response.data);
       }

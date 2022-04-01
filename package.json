@@ -26,6 +26,7 @@
     "@jest/globals": "^27.5.1",
     "axios": "^0.26.1",
     "classnames": "^2.3.1",
+    "cors": "^2.8.5",
     "express": "^4.17.3",
     "moment": "^2.29.1",
     "next": "^11.1.0",

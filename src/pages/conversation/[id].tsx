@@ -82,12 +82,9 @@ export default function Conversation(props: ConversationProps) {
    * Sets the state of the conversation after the request has been completed
    */
   function fetchConversationInfo(): void {
-    APIManager.getFromServer(`${Routes.CONVERSATIONS}/${connectedUserId}`)
+    APIManager.getFromServer(`${Routes.CONVERSATION_BY_ID}${conversationId}`)
       .then((response) => {
-        const currentConversation = response.data.find(
-          (userConversation) => userConversation.id === parseInt(conversationId, 10),
-        );
-        setConversation(currentConversation);
+        setConversation(response.data);
       });
 
     APIManager.getFromServer(`${Routes.MESSAGES}/${conversationId}`)

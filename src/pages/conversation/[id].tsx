@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import moment from 'moment';
 import { getLoggedUserId } from '../../utils/getLoggedUserId';
 import Layout from '../../components/layouts/layout';
 import ConversationHeader from '../../components/molecules/ConversationHeader';
 import Message from '../../components/atoms/Message';
 import ConversationTextInput from '../../components/atoms/ConversationTextInput';
 import type { Conversation as ConversationType } from '../../types/conversation';
-import type { Message as MessageType } from '../../types/message';
+import type { Message as MessageType, PostedMessage } from '../../types/message';
 import APIManager from '../../server/APIManager';
 import Routes from '../../utils/routes';
 
@@ -62,7 +63,15 @@ export default function Conversation(props: ConversationProps) {
    * then fetch the details
    * @param message
    */
-  function sendMessage(message: string) {
+  function sendMessage(message: string): void {
+    const newMessage: PostedMessage = {
+      conversationId: parseInt(id, 10),
+      authorId: getLoggedUserId(),
+      timestamp: moment().unix(),
+      body: message,
+    };
+    APIManager.postOnServer(`${Routes.MESSAGES}/${id}`, newMessage)
+      .then(fetchConversationInfo);
   }
 
   /**
@@ -70,7 +79,7 @@ export default function Conversation(props: ConversationProps) {
    * Fetch the messages from the conversation ID
    * Sets the state of the conversation after the request has been completed
    */
-  function fetchConversationInfo() {
+  function fetchConversationInfo(): void {
     APIManager.getFromServer(`${Routes.CONVERSATIONS}/${getLoggedUserId()}`)
       .then((response) => {
         const currentConversation = response.data.find(
@@ -103,7 +112,7 @@ export default function Conversation(props: ConversationProps) {
    * Here, we replace the user's name by "You"
    * @return string The name of the author followed by the name of the contact
    */
-  function conversationUsernames() {
+  function conversationUsernames(): string {
     const isUserAuthor = senderId === getLoggedUserId();
     return isUserAuthor ? `You - ${recipientNickname}` : `${senderNickname} - You`;
   }
@@ -112,7 +121,7 @@ export default function Conversation(props: ConversationProps) {
    * Get the username of the contact the logged user is talking with,
    * regardless of if the message is sent by the contact or by the user.
    */
-  function contactUsername() {
+  function contactUsername(): string {
     const isUserAuthor = senderId === getLoggedUserId();
     return isUserAuthor ? recipientNickname : senderNickname;
   }

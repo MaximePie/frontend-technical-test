@@ -59,7 +59,21 @@
       "conversationId": 1,
       "timestamp": 1625648867,
       "authorId": 1,
-      "body": "I can relate. I'm too used to React Router. \uD83D\uDE2D"
+      "body": "I can relate. I'm too used to React Router. 😭"
+    },
+    {
+      "conversationId": 1,
+      "authorId": 1,
+      "timestamp": 1648820025,
+      "body": "Ha ha ha, I love pancakes",
+      "id": 6
+    },
+    {
+      "conversationId": 1,
+      "authorId": 1,
+      "timestamp": 1648820164,
+      "body": "But Json Server was a perfect choice for such application !",
+      "id": 7
     }
   ],
   "users": [

@@ -11,4 +11,8 @@ export default class APIManager {
   static getFromServer(path: string) {
     return axios.get(baseURL + path);
   }
+
+  static postOnServer(path: string, body: any) {
+    return axios.post(baseURL + path, body);
+  }
 }

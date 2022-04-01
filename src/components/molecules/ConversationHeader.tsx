@@ -8,8 +8,6 @@ interface ConversationHeaderProps {
 
 export default function ConversationHeader(props: ConversationHeaderProps) {
   const { usernames, lastMessageDate } = props;
-  console.log(lastMessageDate);
-  console.log(moment.unix(parseInt(lastMessageDate, 10)).format('MMM D Y'));
 
   return (
     <div className="ConversationHeader">

@@ -12,7 +12,6 @@ interface ConversationInListProps {
 
 export default function ConversationInList(props: ConversationInListProps) {
   const { conversation, connectedUserId } = props;
-  const router = useRouter();
 
   const {
     senderId,
@@ -24,7 +23,11 @@ export default function ConversationInList(props: ConversationInListProps) {
   const contactUsername = username();
 
   return (
-    <Link href="/conversation/[id]" as={`/conversation/${conversation.id}`}>
+    <Link href={{
+      pathname: '/conversation/[id]',
+      query: { id: conversation.id },
+    }}
+    >
       <div className="ConversationInList">
         <Avatar
           name={contactUsername}
@@ -41,13 +44,6 @@ export default function ConversationInList(props: ConversationInListProps) {
   );
 
   /**
-   * Opens the conversation page associated to this conversation ID
-   */
-  function openConversation(): void {
-    router.push('/conversation/[id]', `/conversation/${conversation.id}`);
-  }
-
-  /**
    * Return the contact's username.
    * If the author is the user, then we display the recipient's name.
    * Else, we display the author's name
@@ -60,7 +56,7 @@ export default function ConversationInList(props: ConversationInListProps) {
    * Create a readable date from the timestamp and returns it
    */
   function date(): string {
-    const date = new Date(parseInt(lastMessageTimestamp, 10) * 1000);
-    return moment(date).format('MMM D');
+    const initialDate = new Date(parseInt(lastMessageTimestamp, 10) * 1000);
+    return moment(initialDate).format('MMM D');
   }
 }

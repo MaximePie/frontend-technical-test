@@ -8,9 +8,7 @@ export const loggedUserId = getLoggedUserId();
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div suppressHydrationWarning>
-      {typeof window === 'undefined' ? null : <Component {...pageProps} />}
-    </div>
+    <Component {...pageProps} />
   );
 }
 

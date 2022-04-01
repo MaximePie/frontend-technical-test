@@ -1,4 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import type { Conversation } from '../../types/conversation';
 import ConversationInList from '../../components/molecules/ConversationInList';
 import Layout from '../../components/layouts/layout';
@@ -6,10 +9,12 @@ import APIManager from '../../server/APIManager';
 import Routes from '../../utils/routes';
 import { userContext } from '../../contexts/UserContext';
 
+library.add(faArrowRightFromBracket);
+
 export default function Index() {
   useEffect(loadConversations, []);
 
-  const { id: connectedUserId } = useContext(userContext);
+  const { id: connectedUserId, logout } = useContext(userContext);
 
   // This is the list of all conversations
   const [conversations, setConversations] = useState<Conversation[]>([]);
@@ -17,7 +22,14 @@ export default function Index() {
   return (
     <Layout>
       <div className="Conversations">
-        <h4>Conversations</h4>
+        <div className="Conversations__header">
+          <h4>Conversations</h4>
+          <FontAwesomeIcon
+            onClick={logout}
+            className="Conversations__logout"
+            icon="fa-solid fa-arrow-right-from-bracket"
+          />
+        </div>
         {conversations.map((conversation) => (
           <div>
             <ConversationInList

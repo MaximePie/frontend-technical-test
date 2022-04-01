@@ -1,4 +1,19 @@
 .Conversations {
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include for-phone {
+      width: 90%;
+    }
+  }
+  
+  &__logout {
+    cursor: pointer;
+  }
+
   @include for-phone() {
     width: 100vw;
     display: flex;

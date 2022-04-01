@@ -3,4 +3,9 @@
   min-width: 400px;
   width: 90em;
   max-width: 1200px;
+
+  &__messages {
+    display: flex;
+    flex-direction: column;
+  }
 }

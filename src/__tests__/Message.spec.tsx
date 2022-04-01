@@ -35,6 +35,7 @@ describe('Message', () => {
 
     expect(
       screen.getByText(/Donkey/),
+      // @ts-ignore
     ).toBeInTheDocument();
   });
 

@@ -41,14 +41,16 @@ export default function Conversation(props: ConversationProps) {
           usernames={conversationUsernames()}
           lastMessageDate={lastMessageTimestamp}
         />
-        {sortedMessages().map((message: MessageType) => (
-          <Message
-            message={message}
-            contactUsername={contactUsername()}
-            isSentByUser={message.authorId === getLoggedUserId()}
-            key={message.id}
-          />
-        ))}
+        <div className="Conversation__messages">
+          {sortedMessages().map((message: MessageType) => (
+            <Message
+              message={message}
+              contactUsername={contactUsername()}
+              isSentByUser={message.authorId === getLoggedUserId()}
+              key={message.id}
+            />
+          ))}
+        </div>
       </div>
     </Layout>
   );

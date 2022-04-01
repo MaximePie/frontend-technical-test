@@ -26,8 +26,6 @@ export default function Message({ message, contactUsername, isSentByUser }: Mess
       <div className="Message__body-container">
         <p className="Message__body">
           {body}
-          {' '}
-          {moment.unix(timestamp).format('MM DD HH:m:s')}
         </p>
       </div>
     </div>

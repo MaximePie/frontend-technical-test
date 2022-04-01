@@ -1,0 +1,35 @@
+.Message {
+
+  // Positionning
+  margin-bottom: 1em;
+
+  // Shape
+  width: 400px;
+  align-self: start;
+
+  &__from-logged-user {
+    align-self: end;
+    .Message__body-container {
+      background-color: $primaryColor;
+      color: $white;
+    }
+  }
+
+  &__contact {
+    margin: 0.25em 0.25em 0 2em;
+    color: $textColorLight;
+  }
+
+  &__body-container {
+
+    // Positionning
+    margin-top: 0.5em;
+
+    // Shape
+    border-radius: 60px;
+
+    // Content
+    background-color: $secondaryColor;
+    padding: 0.5em 1em 0.5em 2em;
+  }
+}

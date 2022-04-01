@@ -4,12 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
+import { useRouter } from 'next/router';
 import { User } from '../../types/user';
 import APIManager from '../../server/APIManager';
 import Routes from '../../utils/routes';
 import { userContext } from '../../contexts/UserContext';
 import UserCard from './UserCard';
 import { PostedConversation } from '../../types/conversation';
+import { PostedMessage } from '../../types/message';
 
 library.add(faXmark);
 
@@ -22,6 +24,8 @@ interface NewConversationModalProps {
 Modal.setAppElement('#__next');
 
 export default function NewConversationModal(props: NewConversationModalProps) {
+  const router = useRouter();
+
   const { isOpen, onClose, alreadyContactedUserIds } = props;
   const { id: userId } = useContext(userContext);
 
@@ -33,7 +37,11 @@ export default function NewConversationModal(props: NewConversationModalProps) {
     <Modal isOpen={isOpen} onAfterOpen={fetchUsers} className="NewConversationModal">
       <div className="NewConversationModal">
         <div className="NewConversationModal__header">
-          <FontAwesomeIcon icon="fa-xmark" onClick={onCloseButtonClick} />
+          <FontAwesomeIcon
+            // @ts-ignore
+            icon="fa-xmark"
+            onClick={onCloseButtonClick}
+          />
         </div>
         <div className="NewConversationModal__users">
           {!newContactsList.length && (
@@ -47,7 +55,7 @@ export default function NewConversationModal(props: NewConversationModalProps) {
             <UserCard
               user={user}
               actionText="Start Chat"
-              onActionClick={() => startNewConversation(user.id)}
+              onActionClick={() => startNewConversation(user)}
             />
           ))}
         </div>
@@ -59,15 +67,26 @@ export default function NewConversationModal(props: NewConversationModalProps) {
    * Start a new conversation with the selected User
    * Then redirect the user to the appropriate conversation page
    */
-  function startNewConversation(contactId: number) {
-    // const newMessage: PostedConversation = {
-    //   conversationId: parseInt(id, 10),
-    //   authorId: connectedUserId,
-    //   timestamp: moment().unix(),
-    //   body: message,
-    // };
-    // APIManager.postOnServer(`${Routes.MESSAGES}/${id}`, newMessage)
-    //   .then(fetchConversationInfo);
+  function startNewConversation({ id, nickname }: User) {
+    APIManager.getFromServer(`${Routes.USERS}/${userId}`).then((response) => {
+      const newMessage: PostedConversation = {
+        lastMessageTimestamp: moment().unix().toString(),
+        senderId: userId,
+        recipientId: id,
+        recipientNickname: nickname,
+        senderNickname: response.data.nickname,
+      };
+
+      APIManager.postOnServer(`${Routes.CONVERSATIONS}/${userId}`, newMessage).then(async (newConversationResponse) => {
+        if (newConversationResponse.data) {
+          const { id: newConversationId } = newConversationResponse.data;
+          console.log('Fetchint the conversation');
+          const updatedConversations = await APIManager.getFromServer(`${Routes.CONVERSATIONS}/${userId}`);
+          console.log(updatedConversations);
+          router.push(`${Routes.CONVERSATION}/${newConversationId}`);
+        }
+      });
+    });
   }
 
   /**

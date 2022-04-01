@@ -22,7 +22,7 @@ interface ConversationProps {
 
 export default function Conversation(props: ConversationProps) {
   const { query } = props;
-  const { id } = query;
+  const { id: conversationId } = query;
 
   const [conversation, setConversation] = useState<ConversationType>();
   const [messages, setMessages] = useState<MessageType[]>();
@@ -67,12 +67,12 @@ export default function Conversation(props: ConversationProps) {
    */
   function sendMessage(message: string): void {
     const newMessage: PostedMessage = {
-      conversationId: parseInt(id, 10),
+      conversationId: parseInt(conversationId, 10),
       authorId: connectedUserId,
       timestamp: moment().unix(),
       body: message,
     };
-    APIManager.postOnServer(`${Routes.MESSAGES}/${id}`, newMessage)
+    APIManager.postOnServer(`${Routes.MESSAGES}/${conversationId}`, newMessage)
       .then(fetchConversationInfo);
   }
 
@@ -85,13 +85,12 @@ export default function Conversation(props: ConversationProps) {
     APIManager.getFromServer(`${Routes.CONVERSATIONS}/${connectedUserId}`)
       .then((response) => {
         const currentConversation = response.data.find(
-          (userConversation) => userConversation.id === parseInt(id, 10),
+          (userConversation) => userConversation.id === parseInt(conversationId, 10),
         );
-
         setConversation(currentConversation);
       });
 
-    APIManager.getFromServer(`${Routes.MESSAGES}/${id}`)
+    APIManager.getFromServer(`${Routes.MESSAGES}/${conversationId}`)
       .then((response) => setMessages(response.data));
   }
 

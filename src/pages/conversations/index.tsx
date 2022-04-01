@@ -13,7 +13,7 @@ import { userContext } from '../../contexts/UserContext';
 library.add(faArrowRightFromBracket);
 
 export default function Index() {
-  const [isModalOpen, setModalOpenState] = useState<boolean>(true);
+  const [isModalOpen, setModalOpenState] = useState<boolean>(false);
 
   useEffect(loadConversations, []);
 

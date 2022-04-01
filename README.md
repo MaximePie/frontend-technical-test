@@ -1,3 +1,41 @@
+## How to use ?
+
+Here is how to use the app. 
+You will need **NodeJS** installed to perform it. 
+1. Clone the project in the directory of your choice : `git clone https://github.com/MaximePie/frontend-technical-test.git`
+2. From the root project folder, use `npm install` or `yarn install` to install the dependencies. 
+3. From one console, use `yarn start-server` to start the Json Server on local port, the address is `http://localhost:3005`
+4. From another console, use `yarn dev` to start the NextJS server and display the app at `http://localhost:3000`. 
+
+## Technical choices
+
+The following modules are used additionnaly to the initial stack (NextJS, Typescript, ...), here is some of them and why I chose to use it. 
+
+### Eslint airbnb coding rules 
+Less permissive rules, which allows me to code stronger quality code.
+More info [here](https://www.npmjs.com/package/eslint-config-airbnb)
+
+### Atomic Design 
+I used the concept of Atomic Design to organize my components. Since there were not much components in this project, I used a lighter version composed of only 3 layers : "pages", "layouts", "molecules", and "atoms". 
+![image](https://user-images.githubusercontent.com/16031936/161192930-c1f3eaa3-956b-4dd1-ae17-2323f10f77c6.png)
+
+### [Sass](https://create-react-app.dev/docs/adding-a-sass-stylesheet/)
+I used Sass in this Project to write CSS in a more intuitive way. 
+
+### [Axios](https://www.npmjs.com/package/axios)
+A good alternative to `fetch` without having to convert the received data to `Json` after the request has been completed. 
+
+### [MomentJS](https://momentjs.com/)
+Will be used to format the dates without using any complicated function, used for **date formating**
+
+### [React-avatar](https://www.npmjs.com/package/react-avatar)
+A light package used to generate **Avatar** profiles
+
+### BEM syntax
+Used to name my components classNames to help writing better CSS rules. It works well with SASS syntax !
+![image](https://user-images.githubusercontent.com/16031936/161193602-d0b9dc97-41e8-4c44-8def-fe24070060a2.png)
+
+
 # Context :
 
 At leboncoin, our users can share messages about a transaction, or ask for informations about any products.

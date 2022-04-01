@@ -5,6 +5,7 @@ import Layout from '../../components/layouts/layout';
 import ConversationHeader from '../../components/molecules/ConversationHeader';
 import type { Conversation as ConversationType } from '../../types/conversation';
 import type { Message as MessageType } from '../../types/message';
+import APIManager from '../../server/APIManager';
 
 export async function getServerSideProps(context) {
   return {
@@ -39,6 +40,7 @@ export default function Conversation(props: ConversationProps) {
           usernames={conversationUsernames()}
           lastMessageDate={lastMessageTimestamp}
         />
+        {JSON.stringify(messages)}
       </div>
     </Layout>
   );
@@ -49,7 +51,7 @@ export default function Conversation(props: ConversationProps) {
    * Sets the state of the conversation after the request has been completed
    */
   function fetchConversationInfo() {
-    axios.get(`http://localhost:3005/conversations/${getLoggedUserId()}`)
+    APIManager.getFromServer(`conversations/${getLoggedUserId()}`)
       .then((response) => {
         const currentConversation = response.data.find(
           (userConversation) => userConversation.id === parseInt(id, 10),
@@ -58,7 +60,7 @@ export default function Conversation(props: ConversationProps) {
         setConversation(currentConversation);
       });
 
-    axios.get(`http://localhost:3005/messages/${id}`)
+    APIManager.getFromServer(`messages/${id}`)
       .then((response) => setMessages(response.data));
   }
 

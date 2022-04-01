@@ -3,6 +3,7 @@ import axios from 'axios';
 import type { Conversation } from '../../types/conversation';
 import ConversationInList from '../../components/molecules/ConversationInList';
 import Layout from '../../components/layouts/layout';
+import APIManager from '../../server/APIManager';
 
 const connectedUserId: number = 1;
 
@@ -34,10 +35,9 @@ export default function Index() {
    * And display it on the page once it's done.
    */
   function loadConversations(): void {
-    axios.get(`http://localhost:3005/conversations/${connectedUserId}`)
-      .then((response) => {
-        const conversationsList: Conversation[] = response.data;
-        setConversations(conversationsList);
-      });
+    APIManager.getFromServer(`conversations/${connectedUserId}`).then((response) => {
+      const conversationsList: Conversation[] = response.data;
+      setConversations(conversationsList);
+    });
   }
 }

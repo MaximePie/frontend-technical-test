@@ -17,7 +17,7 @@ export default function Layout({ children }: LayoutProps) {
         <meta name="description" content="Frontend exercise for developpers who want to join us on leboncoin.fr" />
       </Head>
       {children}
-      <footer className={styles.footer}>
+      <footer className="Footer">
         &copy; leboncoin -
         {' '}
         {year}

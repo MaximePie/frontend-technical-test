@@ -1,8 +1,14 @@
 .Conversation {
   // Shape
+  min-height: calc(100vh - 3em);
   min-width: 400px;
   width: 90em;
   max-width: 1200px;
+
+  // Content
+  display: grid;
+  grid-template-rows: 64px 1fr 60px;
+  align-items: start;
 
   @include for-phone {
     min-width: 360px;
@@ -13,5 +19,7 @@
   &__messages {
     display: flex;
     flex-direction: column;
+    padding: 1em;
+    max-height: 100%;
   }
 }

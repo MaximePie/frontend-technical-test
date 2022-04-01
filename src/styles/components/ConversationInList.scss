@@ -23,6 +23,15 @@
     cursor: pointer;
   }
 
+
+  @include for-phone {
+    min-width: 300px;
+    max-width: 1200px;
+    width: 80vw;
+    margin: 0.5em;
+    grid-template-columns: 96px 1fr;
+  }
+
   &__details {
     // Content
     display: grid;

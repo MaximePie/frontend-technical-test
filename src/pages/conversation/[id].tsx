@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { getLoggedUserId } from '../../utils/getLoggedUserId';
 import Layout from '../../components/layouts/layout';
 import ConversationHeader from '../../components/molecules/ConversationHeader';
 import type { Conversation as ConversationType } from '../../types/conversation';
 import type { Message as MessageType } from '../../types/message';
 import APIManager from '../../server/APIManager';
+import Routes from '../../utils/routes';
 
 export async function getServerSideProps(context) {
   return {
@@ -51,7 +51,7 @@ export default function Conversation(props: ConversationProps) {
    * Sets the state of the conversation after the request has been completed
    */
   function fetchConversationInfo() {
-    APIManager.getFromServer(`conversations/${getLoggedUserId()}`)
+    APIManager.getFromServer(`${Routes.CONVERSATIONS}/${getLoggedUserId()}`)
       .then((response) => {
         const currentConversation = response.data.find(
           (userConversation) => userConversation.id === parseInt(id, 10),
@@ -60,7 +60,7 @@ export default function Conversation(props: ConversationProps) {
         setConversation(currentConversation);
       });
 
-    APIManager.getFromServer(`messages/${id}`)
+    APIManager.getFromServer(`${Routes.MESSAGES}/${id}`)
       .then((response) => setMessages(response.data));
   }
 

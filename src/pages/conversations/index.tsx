@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import type { Conversation } from '../../types/conversation';
 import ConversationInList from '../../components/molecules/ConversationInList';
 import Layout from '../../components/layouts/layout';
 import APIManager from '../../server/APIManager';
+import Routes from '../../utils/routes';
 
 const connectedUserId: number = 1;
 
@@ -16,7 +16,7 @@ export default function Index() {
   return (
     <Layout>
       <div className="Conversations">
-        <h4>Index</h4>
+        <h4>Conversations</h4>
         {conversations.map((conversation) => (
           <div>
             <ConversationInList
@@ -35,7 +35,7 @@ export default function Index() {
    * And display it on the page once it's done.
    */
   function loadConversations(): void {
-    APIManager.getFromServer(`conversations/${connectedUserId}`).then((response) => {
+    APIManager.getFromServer(`${Routes.CONVERSATIONS}/${connectedUserId}`).then((response) => {
       const conversationsList: Conversation[] = response.data;
       setConversations(conversationsList);
     });

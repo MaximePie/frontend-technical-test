@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 import Avatar from 'react-avatar';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Conversation } from '../../types/conversation';
 
@@ -36,8 +35,8 @@ export default function ConversationInList(props: ConversationInListProps) {
           size="50px"
         />
         <div className="ConversationInList__details">
-          <div className="ConversationInList__recipientNickname">{contactUsername}</div>
-          <div className="ConversationInList__date">{date()}</div>
+          <p className="ConversationInList__recipientNickname">{contactUsername}</p>
+          <p className="ConversationInList__date">{date()}</p>
         </div>
       </div>
     </Link>

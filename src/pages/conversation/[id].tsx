@@ -30,6 +30,7 @@ export default function Conversation(props: ConversationProps) {
     lastMessageTimestamp,
     senderId,
   } = conversation || {};
+  console.log(conversation);
 
   useEffect(fetchConversationInfo, []);
 

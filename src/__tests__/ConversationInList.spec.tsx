@@ -34,6 +34,8 @@ describe('Conversation in List', () => {
     );
     const expectedInitial = conversationStartedByUser.recipientNickname;
     const avatar = document.querySelector('.sb-avatar__text');
+
+    // @ts-ignore
     expect(avatar.title).toBe(expectedInitial);
   });
 

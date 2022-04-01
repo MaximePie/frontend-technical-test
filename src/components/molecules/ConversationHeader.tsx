@@ -1,5 +1,5 @@
 import React from 'react';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 
 interface ConversationHeaderProps {
   usernames: string,
@@ -8,6 +8,8 @@ interface ConversationHeaderProps {
 
 export default function ConversationHeader(props: ConversationHeaderProps) {
   const { usernames, lastMessageDate } = props;
+  console.log(lastMessageDate);
+  console.log(moment.unix(parseInt(lastMessageDate, 10)).format('MMM D Y'));
 
   return (
     <div className="ConversationHeader">
@@ -15,8 +17,8 @@ export default function ConversationHeader(props: ConversationHeaderProps) {
         {usernames}
       </span>
       <span>
-        Last message
-        {formatedLastMessageDate()}
+        Last message:
+        {` ${formatedLastMessageDate()}`}
       </span>
     </div>
   );
@@ -25,18 +27,17 @@ export default function ConversationHeader(props: ConversationHeaderProps) {
    * Create a readable Last Message date with moment and return it
    */
   function formatedLastMessageDate() {
-    const formatedDate = isToday() ? 'today' : moment(lastMessageDate).day();
+    const convertedLastMessageDate: Moment = moment.unix(parseInt(lastMessageDate, 10));
+    const formatedDate: string = isToday() ? 'today' : convertedLastMessageDate.format('MMM D');
+    const formatedTime: string = convertedLastMessageDate.format('hh:mm a');
 
-    return moment(formatedDate).format();
+    return `${formatedDate} at ${formatedTime}`;
 
     /**
      * Returns true if the lastMessageDate is today, else false
      */
     function isToday() {
-      const todayDate = moment().endOf('day');
-      const yesterdayDate = moment().startOf('day');
-
-      return todayDate < moment(lastMessageDate) && yesterdayDate > moment(lastMessageDate);
+      return moment().isSame(convertedLastMessageDate, 'd');
     }
   }
 }

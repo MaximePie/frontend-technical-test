@@ -10,7 +10,6 @@ export default function Index() {
   useEffect(loadConversations, []);
 
   const { id: connectedUserId } = useContext(userContext);
-  console.log(connectedUserId);
 
   // This is the list of all conversations
   const [conversations, setConversations] = useState<Conversation[]>([]);

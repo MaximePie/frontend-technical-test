@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Layout from '../components/layouts/layout';
-import { User } from '../types/user';
-import Routes from '../utils/routes';
-import APIManager from '../server/APIManager';
-import UserCard from '../components/molecules/UserCard';
+import Layout from '../../components/layouts/layout';
+import { User } from '../../types/user';
+import Routes from '../../utils/routes';
+import APIManager from '../../server/APIManager';
+import UserCard from '../../components/molecules/UserCard';
 
-function Home() {
+export default function Users() {
   const [users, setUsers] = useState<User[]>([]);
   useEffect(fetchUsers, []);
   return (
@@ -29,5 +29,3 @@ function Home() {
     });
   }
 }
-
-export default Home;

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import Avatar from 'react-avatar';
 import Link from 'next/link';
 import { Conversation } from '../../types/conversation';
+import APIManager from '../../server/APIManager';
+import Routes from '../../utils/routes';
 
 interface ConversationInListProps {
   conversation: Conversation,
@@ -17,7 +19,11 @@ export default function ConversationInList(props: ConversationInListProps) {
     recipientNickname,
     senderNickname,
     lastMessageTimestamp,
+    recipientId,
   } = conversation;
+
+  const [contactImage, setContactImage] = useState<string>('');
+  useEffect(fetchContactImage, []);
 
   const contactUsername = username();
 
@@ -33,6 +39,7 @@ export default function ConversationInList(props: ConversationInListProps) {
           alt={contactUsername}
           round="100px"
           size="50px"
+          src={contactImage}
         />
         <div className="ConversationInList__details">
           <p className="ConversationInList__recipientNickname">{contactUsername}</p>
@@ -41,6 +48,16 @@ export default function ConversationInList(props: ConversationInListProps) {
       </div>
     </Link>
   );
+
+  /**
+   * Fetch contact ID
+   */
+  function fetchContactImage(): void {
+    const contactUserId = senderId === connectedUserId ? recipientId : senderId;
+    APIManager.getFromServer(`${Routes.USERS}/${contactUserId}`).then((response) => {
+      setContactImage(response.data.image);
+    });
+  }
 
   /**
    * Return the contact's username.

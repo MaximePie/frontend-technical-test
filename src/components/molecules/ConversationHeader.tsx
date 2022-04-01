@@ -1,5 +1,12 @@
 import React from 'react';
 import moment, { Moment } from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
+import Routes from '../../utils/routes';
+
+library.add(faArrowLeft);
 
 interface ConversationHeaderProps {
   usernames: string,
@@ -11,8 +18,13 @@ export default function ConversationHeader(props: ConversationHeaderProps) {
 
   return (
     <div className="ConversationHeader">
-      <span className="ConversationHeader__usernames">
-        {usernames}
+      <span className="ConversationHeader__left-side">
+        <Link href={`/${Routes.CONVERSATIONS}`}>
+          <FontAwesomeIcon className="ConversationHeader__back-button" icon="arrow-left" />
+        </Link>
+        <span className="ConversationHeader__usernames">
+          {usernames}
+        </span>
       </span>
       <span>
         Last message:

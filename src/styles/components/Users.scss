@@ -1,3 +1,11 @@
 .Users {
   display: flex;
+
+  @include for-phone {
+    flex-direction: column;
+  }
+}
+
+.Users__header {
+  text-align: center;
 }

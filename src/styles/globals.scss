@@ -1,4 +1,6 @@
 @import './fonts';
 @import './colors';
 
-@import "./ConversationInList";
+@import "components/ConversationInList";
+@import "components/Conversation";
+@import "components/ConversationHeader";

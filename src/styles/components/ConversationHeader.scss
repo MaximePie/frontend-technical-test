@@ -1,0 +1,14 @@
+.ConversationHeader {
+  // Positionning
+  margin-bottom: 1em;
+
+  // Shape
+  background-color: $secondaryColor;
+  border-top: 1px solid $textColor;
+
+  // Content
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 2em;
+  font-weight: 900;
+}

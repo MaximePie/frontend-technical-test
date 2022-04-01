@@ -1,7 +1,9 @@
 @import './fonts';
 @import './colors';
+@import "./borders";
 
 @import "components/ConversationInList";
 @import "components/Conversation";
 @import "components/ConversationHeader";
 @import "components/Message";
+@import "components/ConversationTextInput";

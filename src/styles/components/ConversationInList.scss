@@ -1,7 +1,7 @@
 .ConversationInList {
   // Shape
-  border: solid 2px $secondaryColor;
-  border-radius: 30px;
+  border: $grayBorder;
+  border-radius: $roundedBorderSize;
 
   min-width: 400px;
   width: 80em;

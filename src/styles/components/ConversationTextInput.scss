@@ -1,0 +1,48 @@
+.ConversationTextInput {
+  width: 100%;
+  max-width: calc(1200px - 6em);
+  margin: 1em 0;
+  &__form {
+
+    // Shape
+    width: 100%;
+    border: $grayBorder;
+    border-radius: $roundedBorderSize;
+
+    // Content
+    padding: 0.5em 3em;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__input {
+
+    // Shape
+    border: none;
+    outline: none;
+
+    &::placeholder {
+      color: $textColorLight;
+    }
+  }
+
+  &__submit {
+    // Shape
+    border: none;
+    outline: none;
+
+    // Content
+    color: $textColorMedium;
+    background: none;
+    font-size: 1.5em;
+
+    // Animation
+    animation: color 400ms ease-in-out;
+
+    &:hover {
+      animation: color 400ms ease-in-out;
+      color: $textColorLight;
+      cursor: pointer;
+    }
+  }
+}

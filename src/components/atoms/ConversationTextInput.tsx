@@ -1,4 +1,9 @@
 import React, { useState, ChangeEvent } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faPaperPlane);
 
 interface ConversationTextInputProps {
   onMessageSend: Function
@@ -8,13 +13,26 @@ export default function ConversationTextInput({ onMessageSend }: ConversationTex
   const [messageText, setMessageText] = useState<string>('');
 
   return (
-    <form
-      className="ConversationTextInput"
-      onSubmit={handleSend}
-    >
-      <input type="text" onChange={handleMessageUpdate} value={messageText} />
-      <button type="submit">{'>'}</button>
-    </form>
+    <div className="ConversationTextInput">
+      <form
+        onSubmit={handleSend}
+        className="ConversationTextInput__form"
+      >
+        <input
+          placeholder="Send Message"
+          type="text"
+          onChange={handleMessageUpdate}
+          value={messageText}
+          className="ConversationTextInput__input"
+        />
+        <button
+          type="submit"
+          className="ConversationTextInput__submit"
+        >
+          <FontAwesomeIcon icon="paper-plane" />
+        </button>
+      </form>
+    </div>
   );
 
   /**

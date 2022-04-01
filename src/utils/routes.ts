@@ -2,7 +2,7 @@ const enum Routes {
   MESSAGES= 'messages',
   CONVERSATIONS='conversations',
   CONVERSATION='conversation',
-  CONVERSATION_BY_ID='conversation/byId/',
+  CONVERSATION_BY_ID='conversations/byId/',
   USERS='users',
   CREATE_USERS='users/create',
 }

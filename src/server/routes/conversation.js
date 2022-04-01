@@ -15,11 +15,13 @@ router.get('/:userId', (request, response) => {
  */
 router.get('/byId/:id', (request, response) => {
   const { id } = request.params;
+  const formatedId = parseInt(id, 10);
   let conversations = store.get('conversations');
   if (!conversations) {
     conversations = [];
   }
-  const targetConversation = conversations.find((conversation) => conversation.id === id);
+  const targetConversation = conversations.find((conversation) => conversation.id === formatedId);
+  console.log(targetConversation);
   response.json(targetConversation);
 });
 
@@ -55,15 +57,13 @@ router.post('/:userId', (request, response) => {
  */
 function getConversationsForUser(userId) {
   const conversations = store.get('conversations');
+  const formatedUserId = parseInt(userId, 10);
   if (!conversations || !conversations.length) {
     return [];
   }
 
   return conversations.filter(
-    (conversation) => (
-      conversations.senderId === userId
-        || conversations.recipientId === userId
-    ),
+    ({ senderId, recipientId }) => senderId === formatedUserId || recipientId === formatedUserId,
   );
 }
 

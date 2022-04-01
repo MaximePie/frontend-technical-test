@@ -19,6 +19,7 @@
   "dependencies": {
     "@jest/globals": "^27.5.1",
     "axios": "^0.26.1",
+    "classnames": "^2.3.1",
     "moment": "^2.29.1",
     "next": "^11.1.0",
     "prop-types": "^15.8.1",

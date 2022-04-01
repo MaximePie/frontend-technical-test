@@ -31,21 +31,21 @@
       "conversationId": 1,
       "timestamp": 1625637849,
       "authorId": 1,
-      "body": "Bonjour c'est le premier message de la première conversation"
+      "body": "Hi Jeremie, how do you like my new code?"
     },
     {
       "id": 2,
       "conversationId": 1,
       "timestamp": 1625637867,
-      "authorId": 1,
-      "body": "Bonjour c'est le second message de la première conversation"
+      "authorId": 2,
+      "body": "Yes, I like the way you used the JSDoc on functions, and that you tested it!"
     },
     {
       "id": 3,
       "conversationId": 1,
       "timestamp": 1625648667,
       "authorId": 2,
-      "body": "Bonjour c'est le troisième message de la première conversation"
+      "body": "I had some troubles discovering the NextJS Routing system though..."
     },
     {
       "id": 4,
@@ -53,6 +53,13 @@
       "timestamp": 1620284667,
       "authorId": 2,
       "body": "Bonjour c'est le premier message de la seconde conversation"
+    },
+    {
+      "id": 5,
+      "conversationId": 1,
+      "timestamp": 1625648867,
+      "authorId": 1,
+      "body": "I can relate. I'm too used to React Router. \uD83D\uDE2D"
     }
   ],
   "users": [

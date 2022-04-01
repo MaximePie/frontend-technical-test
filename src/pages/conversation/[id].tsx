@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getLoggedUserId } from '../../utils/getLoggedUserId';
 import Layout from '../../components/layouts/layout';
 import ConversationHeader from '../../components/molecules/ConversationHeader';
+import Message from '../../components/atoms/Message';
 import type { Conversation as ConversationType } from '../../types/conversation';
 import type { Message as MessageType } from '../../types/message';
 import APIManager from '../../server/APIManager';
@@ -30,7 +31,6 @@ export default function Conversation(props: ConversationProps) {
     lastMessageTimestamp,
     senderId,
   } = conversation || {};
-  console.log(conversation);
 
   useEffect(fetchConversationInfo, []);
 
@@ -41,7 +41,14 @@ export default function Conversation(props: ConversationProps) {
           usernames={conversationUsernames()}
           lastMessageDate={lastMessageTimestamp}
         />
-        {JSON.stringify(messages)}
+        {sortedMessages().map((message: MessageType) => (
+          <Message
+            message={message}
+            contactUsername={contactUsername()}
+            isSentByUser={message.authorId === getLoggedUserId()}
+            key={message.id}
+          />
+        ))}
       </div>
     </Layout>
   );
@@ -66,6 +73,19 @@ export default function Conversation(props: ConversationProps) {
   }
 
   /**
+   * Sort the messages by chronological order
+   *
+   * @return MessageType[] the list of the sorted messagesa
+   */
+  function sortedMessages(): MessageType[] {
+    let result = [];
+    if (messages?.length) {
+      result = messages.sort((messageA, messageB) => messageA.timestamp - messageB.timestamp);
+    }
+    return result;
+  }
+
+  /**
    * Generates the usernames in the correct order according
    * to the author of the conversation
    * Here, we replace the user's name by "You"
@@ -74,5 +94,14 @@ export default function Conversation(props: ConversationProps) {
   function conversationUsernames() {
     const isUserAuthor = senderId === getLoggedUserId();
     return isUserAuthor ? `You - ${recipientNickname}` : `${senderNickname} - You`;
+  }
+
+  /**
+   * Get the username of the contact the logged user is talking with,
+   * regardless of if the message is sent by the contact or by the user.
+   */
+  function contactUsername() {
+    const isUserAuthor = senderId === getLoggedUserId();
+    return isUserAuthor ? recipientNickname : senderNickname;
   }
 }

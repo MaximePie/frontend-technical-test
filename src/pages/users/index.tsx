@@ -11,8 +11,10 @@ export default function Users() {
   return (
     <Layout>
       <>
-        <h4>Welcome! Wait... who are you, yet?</h4>
-        {users.map((user) => <UserCard key={user.id} user={user} />)}
+        <h2>Welcome! Wait... who are you, yet?</h2>
+        <div className="Users">
+          {users.map((user) => <UserCard key={user.id} user={user} />)}
+        </div>
       </>
     </Layout>
   );

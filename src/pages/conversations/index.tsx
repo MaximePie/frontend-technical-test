@@ -25,8 +25,10 @@ export default function Index() {
         <div className="Conversations__header">
           <h4>Conversations</h4>
           <FontAwesomeIcon
+            // @ts-ignore
             onClick={logout}
             className="Conversations__logout"
+            // @ts-ignore
             icon="fa-solid fa-arrow-right-from-bracket"
           />
         </div>

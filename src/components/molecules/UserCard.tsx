@@ -16,7 +16,8 @@ export default function UserCard({ user }: UserCardProps) {
 
   return (
     <div className="UserCard">
-      <Avatar alt={nickname} name={nickname} src={image} />
+      <Avatar round="100px" className="UserCard__avatar" alt={nickname} name={nickname} src={image} />
+      <h4>{nickname}</h4>
       <button type="button" className="UserCard__login" onClick={loginAsUser}>Se connecter</button>
     </div>
   );

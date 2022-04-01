@@ -7,11 +7,18 @@
   width: 400px;
   align-self: start;
 
+  @include for-phone {
+    max-width: 360px;
+  }
+
   &__from-logged-user {
     align-self: end;
+    text-align: end;
+
     .Message__body-container {
       background-color: $primaryColor;
       color: $white;
+      display: inline-block
     }
   }
 
@@ -31,5 +38,9 @@
     // Content
     background-color: $secondaryColor;
     padding: 0.5em 1em 0.5em 2em;
+
+    @include for-phone {
+      padding: 0.25em 1.5em;
+    }
   }
 }

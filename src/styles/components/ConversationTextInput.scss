@@ -1,7 +1,12 @@
 .ConversationTextInput {
   width: 100%;
   max-width: calc(1200px - 6em);
-  margin: 1em 0;
+  margin: 1em;
+
+  @include for-phone {
+    width: calc(100vw - 2em);
+  }
+
 
   &__form {
 
@@ -14,6 +19,10 @@
     padding: 0.5em 3em;
     display: flex;
     justify-content: space-between;
+
+    @include for-phone {
+      padding: 0.5em 1em;
+    }
   }
 
   &__input {

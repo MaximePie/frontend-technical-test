@@ -12,6 +12,12 @@
   padding: 1em 2em;
   font-weight: 900;
 
+  &__lastMessageTime {
+    @include for-phone {
+      display: none;
+    }
+  }
+
   &__back-button {
     margin-right: 1em;
     cursor: pointer;

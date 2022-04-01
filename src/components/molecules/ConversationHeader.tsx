@@ -26,7 +26,7 @@ export default function ConversationHeader(props: ConversationHeaderProps) {
           {usernames}
         </span>
       </span>
-      <span>
+      <span className="ConversationHeader__lastMessageTime">
         Last message:
         {` ${formatedLastMessageDate()}`}
       </span>

@@ -1,5 +1,4 @@
 const express = require('express');
-const Router = require('router');
 const store = require('store2');
 
 const router = express.Router();
@@ -21,7 +20,6 @@ router.get('/byId/:id', (request, response) => {
     conversations = [];
   }
   const targetConversation = conversations.find((conversation) => conversation.id === formatedId);
-  console.log(targetConversation);
   response.json(targetConversation);
 });
 
@@ -32,7 +30,6 @@ router.post('/:userId', (request, response) => {
   const { conversation } = request.fields;
   const currentConversations = store.get('conversations') ?? [];
   conversation.id = currentConversations[currentConversations.length - 1].id + 1;
-  console.log(conversation);
 
   store.set('conversations', [...currentConversations, conversation]);
   response.json(conversation);

@@ -4,6 +4,7 @@ import { User } from '../../types/user';
 import Routes from '../../utils/routes';
 import APIManager from '../../server/APIManager';
 import UserCard from '../../components/molecules/UserCard';
+import PrimaryButton from '../../components/atoms/PrimaryButton';
 
 export default function Users() {
   const [users, setUsers] = useState<User[]>([]);
@@ -16,9 +17,9 @@ export default function Users() {
         <div className="Users">
           {users.map((user) => <UserCard key={user.id} user={user} actionText="Login" />)}
           {!isLoading && !users.length && (
-            <div>
+            <div className="Users--no-user">
               <p>There are no User for the moment.</p>
-              <button onClick={createUsers}>Create 4 users</button>
+              <PrimaryButton action={createUsers} text="Create 4 users" />
             </div>
           )}
         </div>

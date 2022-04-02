@@ -7,9 +7,20 @@ You will need **NodeJS** installed to perform it.
 3. From one console, use `yarn start-server` to start the Json Server on local port, the address is `http://localhost:3005`
 4. From another console, use `yarn dev` to start the NextJS server and display the app at `http://localhost:3000`. 
 
+
+## Features 
+
+
 ## Technical choices
 
 The following modules are used additionnaly to the initial stack (NextJS, Typescript, ...), here is some of them and why I chose to use it. 
+
+### ExpressJS instead of JSON Server
+I found myself in big trouble using JSON Server, my `db.json` file was updated when posting, 
+but I could not get the new values in the React app without restarting the `json-server`. 
+
+After struggling for about 8+ hours on this I decided to migrate to an `express nodeJS App` with very
+basic features. 
 
 ### Eslint airbnb coding rules 
 Less permissive rules, which allows me to code stronger quality code.

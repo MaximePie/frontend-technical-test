@@ -5,6 +5,7 @@ import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import type { Conversation } from '../../types/conversation';
 import ConversationInList from '../../components/molecules/ConversationInList';
 import NewConversationModal from '../../components/molecules/NewConversationModal';
+import PrimaryButton from '../../components/atoms/PrimaryButton';
 import Layout from '../../components/layouts/layout';
 import APIManager from '../../server/APIManager';
 import Routes from '../../utils/routes';
@@ -51,12 +52,7 @@ export default function Index() {
             </div>
           ))}
           <div className="Conversations__bottom">
-            <button
-              className="Conversations__create"
-              onClick={openModal}
-            >
-              Nouvelle conversation
-            </button>
+            <PrimaryButton action={openModal} text="New conversation" className="Conversations__create" />
           </div>
         </div>
       </>

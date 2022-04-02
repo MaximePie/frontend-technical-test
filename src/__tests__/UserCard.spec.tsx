@@ -12,7 +12,7 @@ const user = {
 
 describe('User Card', () => {
   it('Display the good name', () => {
-    render(<UserCard user={user} />);
+    render(<UserCard user={user} actionText="Login" />);
     // @ts-ignore
     expect(screen.findByText(/Thibault/)).toBeInTheDocument;
   });

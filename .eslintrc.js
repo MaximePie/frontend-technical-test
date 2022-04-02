@@ -26,5 +26,6 @@ module.exports = {
     'import/extensions': [0],
     'import/no-unresolved': [0],
     'no-undef': 'off',
+    'react/require-default-props': 'off',
   },
 };

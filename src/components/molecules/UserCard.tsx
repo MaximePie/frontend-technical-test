@@ -4,11 +4,12 @@ import Avatar from 'react-avatar';
 import { User } from '../../types/user';
 import Routes from '../../utils/routes';
 import { userContext } from '../../contexts/UserContext';
+import PrimaryButton from '../atoms/PrimaryButton';
 
-interface UserCardProps {
+type UserCardProps = {
   user: User,
-  actionText: string | null,
-  onActionClick: Function | null
+  actionText?: string,
+  onActionClick?: Function
 }
 
 export default function UserCard({ user, actionText, onActionClick }: UserCardProps) {
@@ -20,14 +21,12 @@ export default function UserCard({ user, actionText, onActionClick }: UserCardPr
     <div className="UserCard">
       <Avatar round="100px" className="UserCard__avatar" alt={nickname} name={nickname} src={image} />
       <h4>{nickname}</h4>
-      <button
-        type="button"
+      <PrimaryButton
         className="UserCard__login"
+        text={actionText}
         // @ts-ignore
-        onClick={onActionClick || loginAsUser}
-      >
-        {actionText || 'Login'}
-      </button>
+        action={onActionClick || loginAsUser}
+      />
     </div>
   );
 

@@ -19,6 +19,7 @@
       background-color: $primaryColor;
       color: $white;
       display: inline-block;
+      padding: 0.1em 1em 0.1em 1em;
 
       @include for-phone {
         max-width:  70vw;
@@ -39,10 +40,11 @@
 
     // Shape
     border-radius: 60px;
+    min-width: 40px;
 
     // Content
     background-color: $secondaryColor;
-    padding: 0.5em 1em 0.5em 2em;
+    padding: 0.1em 0.5em 0.1em 1.5em;
 
     @include for-phone {
       padding: 0.1em 1em;

@@ -21,6 +21,8 @@ router.get('/:conversationId', (request, response) => {
 });
 
 router.post('/:conversationId', (request, response) => {
+  const { conversationId } = request.params;
+  const formatedConversationId = parseInt(conversationId, 10);
   const { newMessage } = request.fields;
   const currentMessages = store.get('messages') ?? [];
   newMessage.id = currentMessages[currentMessages.length - 1].id + 1;
@@ -28,7 +30,28 @@ router.post('/:conversationId', (request, response) => {
   const updatedMessages = [...currentMessages, { ...newMessage }];
   store.set('messages', updatedMessages);
 
-  response.json(newMessage);
+  // Updating conversation latest timestamp
+  const storedConversations = store.get('conversations');
+  const storedConversation = storedConversations.find(
+    ({ id: storedId }) => storedId === formatedConversationId,
+  );
+
+  const updatedConversation = {
+    ...storedConversation,
+    lastMessageTimestamp: Math.floor(new Date().getTime() / 1000),
+  };
+
+  const updatedConversations = storedConversations.map(
+    (conversation) => (
+      conversation.id !== formatedConversationId
+        ? conversation
+        : updatedConversation
+    ),
+  );
+
+  store.set('conversations', updatedConversations);
+
+  response.json({ newMessage, updatedConversations, updatedConversation });
 });
 
 module.exports = router;

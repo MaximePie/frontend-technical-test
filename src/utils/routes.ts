@@ -5,6 +5,7 @@ const enum Routes {
   CONVERSATION_BY_ID='conversations/byId/',
   USERS='users',
   CREATE_USERS='users/create',
+  UPDATE_CONVERSATION_TIMESTAMP='conversations/updateTimestamp/',
 }
 
 export default Routes;

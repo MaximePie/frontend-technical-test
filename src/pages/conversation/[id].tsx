@@ -62,7 +62,8 @@ export default function Conversation(props: ConversationProps) {
 
   /**
    * Send the message to server
-   * then fetch the details
+   * then fetch the details.
+   * It also updates the last message timestamp in the conversation
    * @param message
    */
   function sendMessage(message: string): void {

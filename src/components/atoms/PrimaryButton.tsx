@@ -1,10 +1,10 @@
 import React from 'react';
 import classnames from 'classnames';
 
-interface PrimaryButtonProps {
+type PrimaryButtonProps = {
   text: string,
   action: Function,
-  className: string | null,
+  className?: string,
 }
 
 export default function PrimaryButton(props: PrimaryButtonProps) {

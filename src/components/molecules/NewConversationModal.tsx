@@ -20,7 +20,10 @@ interface NewConversationModalProps {
   alreadyContactedUserIds: number[]
 }
 
-Modal.setAppElement('#__next');
+const appElement = document.getElementById('__next');
+if (appElement) {
+  Modal.setAppElement('#__next');
+}
 
 export default function NewConversationModal(props: NewConversationModalProps) {
   const router = useRouter();

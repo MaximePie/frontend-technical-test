@@ -22,7 +22,6 @@ export default function UserCard({ user, actionText, onActionClick }: UserCardPr
       <Avatar round="100px" className="UserCard__avatar" alt={nickname} name={nickname} src={image} />
       <h4>{nickname}</h4>
       <PrimaryButton
-        className="UserCard__login"
         text={actionText}
         // @ts-ignore
         action={onActionClick || loginAsUser}

@@ -72,7 +72,7 @@ export default function Conversation(props: ConversationProps) {
       timestamp: moment().unix(),
       body: message,
     };
-    APIManager.postOnServer(`${Routes.MESSAGES}/${conversationId}`, newMessage)
+    APIManager.postOnServer(`${Routes.MESSAGES}/${conversationId}`, { newMessage })
       .then(fetchConversationInfo);
   }
 

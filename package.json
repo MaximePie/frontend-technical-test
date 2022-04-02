@@ -28,6 +28,7 @@
     "classnames": "^2.3.1",
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "express-formidable": "^1.2.0",
     "moment": "^2.29.1",
     "next": "^11.1.0",
     "prop-types": "^15.8.1",

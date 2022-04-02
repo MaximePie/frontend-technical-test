@@ -29,24 +29,12 @@ router.get('/byId/:id', (request, response) => {
  * Creating a new conversation
  */
 router.post('/:userId', (request, response) => {
-  const { conversation } = request.params;
-  const currentConversations = store.get('conversations');
-  let updatedConversations = currentConversations;
-  let lastConversationId = null;
+  const { conversation } = request.fields;
+  const currentConversations = store.get('conversations') ?? [];
+  conversation.id = currentConversations[currentConversations.length - 1].id + 1;
+  console.log(conversation);
 
-  if (!updatedConversations) {
-    updatedConversations = [];
-    lastConversationId = -1;
-  } else {
-    lastConversationId = updatedConversations[updatedConversations.length].id;
-  }
-
-  updatedConversations.push({
-    ...conversation,
-    id: lastConversationId + 1,
-  });
-
-  store.set('conversations', updatedConversations);
+  store.set('conversations', [...currentConversations, conversation]);
   response.json(conversation);
 });
 

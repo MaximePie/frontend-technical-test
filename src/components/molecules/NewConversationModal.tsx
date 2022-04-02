@@ -11,7 +11,6 @@ import Routes from '../../utils/routes';
 import { userContext } from '../../contexts/UserContext';
 import UserCard from './UserCard';
 import { PostedConversation } from '../../types/conversation';
-import { PostedMessage } from '../../types/message';
 
 library.add(faXmark);
 
@@ -31,7 +30,7 @@ export default function NewConversationModal(props: NewConversationModalProps) {
 
   const [users, setUsers] = useState<User[]>([]);
 
-  const newContactsList:User[] = newContacts();
+  const newContactsList: User[] = newContacts();
 
   return (
     <Modal isOpen={isOpen} onAfterOpen={fetchUsers} className="NewConversationModal">
@@ -69,7 +68,7 @@ export default function NewConversationModal(props: NewConversationModalProps) {
    */
   function startNewConversation({ id, nickname }: User) {
     APIManager.getFromServer(`${Routes.USERS}/${userId}`).then((response) => {
-      const newMessage: PostedConversation = {
+      const newConversation: PostedConversation = {
         lastMessageTimestamp: moment().unix().toString(),
         senderId: userId,
         recipientId: id,
@@ -77,15 +76,16 @@ export default function NewConversationModal(props: NewConversationModalProps) {
         senderNickname: response.data.nickname,
       };
 
-      APIManager.postOnServer(`${Routes.CONVERSATIONS}/${userId}`, newMessage).then(async (newConversationResponse) => {
-        if (newConversationResponse.data) {
-          const { id: newConversationId } = newConversationResponse.data;
-          console.log('Fetchint the conversation');
-          const updatedConversations = await APIManager.getFromServer(`${Routes.CONVERSATIONS}/${userId}`);
-          console.log(updatedConversations);
-          router.push(`${Routes.CONVERSATION}/${newConversationId}`);
-        }
-      });
+      APIManager.postOnServer(
+        `${Routes.CONVERSATIONS}/${userId}`,
+        { conversation: newConversation },
+      )
+        .then(async (newConversationResponse) => {
+          if (newConversationResponse.data) {
+            const { id: newConversationId } = newConversationResponse.data;
+            router.push(`${Routes.CONVERSATION}/${newConversationId}`);
+          }
+        });
     });
   }
 

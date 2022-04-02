@@ -34,9 +34,10 @@ router.get('/create', (request, response) => {
  */
 router.get('/:id', (request, response) => {
   const { id } = request.params;
+  const formatedId = parseInt(id, 10);
   const users = store.get('users');
   if (users) {
-    let targetUser = users.find((user) => user.id === id);
+    let targetUser = users.find((user) => user.id === formatedId);
     if (!targetUser) {
       targetUser = {};
     }

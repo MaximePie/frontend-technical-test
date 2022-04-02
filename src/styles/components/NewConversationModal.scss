@@ -8,7 +8,7 @@
 
   // Shape
   width: 800px;
-  height: 500px;
+  height: 380px;
   background-color: $white;
   border-radius: 4px;
 
@@ -16,6 +16,48 @@
   display: grid;
   grid-template-rows: 80px 1fr;
   justify-content: center;
+
+  @include for-phone {
+    width: 360px;
+    height: 94vh;
+  }
+
+  &__header {
+
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+
+    position: relative;
+
+    &-text {
+      margin-top: 0;
+
+      @include for-phone {
+        margin-right: 1em;
+      }
+    }
+
+    svg { // Selecting FontAwesome Icon
+      // Positionning
+      top: 1em;
+      right: 1em;
+      position: absolute;
+
+      cursor: pointer;
+    }
+  }
+
+  &__users {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+
+    @include for-phone {
+      overflow-y: auto;
+      flex-direction: column;
+    }
+  }
 }
 
 .ReactModal__Overlay {

@@ -20,9 +20,11 @@ interface NewConversationModalProps {
   alreadyContactedUserIds: number[]
 }
 
-const appElement = document.getElementById('__next');
-if (appElement) {
-  Modal.setAppElement('#__next');
+if (document) {
+  const appElement = document.getElementById('__next');
+  if (appElement) {
+    Modal.setAppElement('#__next');
+  }
 }
 
 export default function NewConversationModal(props: NewConversationModalProps) {
@@ -39,7 +41,9 @@ export default function NewConversationModal(props: NewConversationModalProps) {
     <Modal isOpen={isOpen} onAfterOpen={fetchUsers} className="NewConversationModal">
       <div className="NewConversationModal">
         <div className="NewConversationModal__header">
+          <h3 className="NewConversationModal__header-text">Want to start a new conversation? Select a user!</h3>
           <FontAwesomeIcon
+            className="NewConversation__header__close-icon"
             // @ts-ignore
             icon="fa-xmark"
             onClick={onCloseButtonClick}

@@ -1,7 +1,0 @@
-{
-  "/conversation/:id": "/conversations?id=:id",
-  "/conversations/:id": "/conversations?senderId=:id",
-  "/messages/:id": "/messages?conversationId=:id",
-  "/message/:id": "/messages?id=:id",
-  "/user/:id": "/users?id=:id"
-}

@@ -11,7 +11,6 @@ type MessageProps = {
 export default function Message({ message, contactUsername, isSentByUser }: MessageProps) {
   const {
     body,
-    timestamp,
   } = message;
 
   const messageClassnames = classnames(

@@ -27,5 +27,6 @@ module.exports = {
     'import/no-unresolved': [0],
     'no-undef': 'off',
     'react/require-default-props': 'off',
+    'linebreak-style': ['error', 'windows'],
   },
 };

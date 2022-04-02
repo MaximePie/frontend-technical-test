@@ -20,7 +20,7 @@ type NewConversationModalProps = {
   alreadyContactedUserIds: number[]
 }
 
-if (document) {
+if (typeof window !== 'undefined') {
   const appElement = document.getElementById('__next');
   if (appElement) {
     Modal.setAppElement('#__next');

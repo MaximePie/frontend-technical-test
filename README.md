@@ -40,6 +40,16 @@ As an User:
 - I can see the last message date and hours
 - I can navigate between the conversations page, and a single conversation page. 
 
+## How to run tests ?
+
+- Use `yarn test` or `npm run test`
+
+## Some additionnal data about the project
+
+- Total commits : 60
+- Total branches : 10
+- Time spent : ~ 18h (Lot of time has been wasted on the Json-server problem, please see the dedicated part for more details)
+- Coffee Cups : 12
 
 ## Technical choices
 

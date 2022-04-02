@@ -1,9 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
-import moment from 'moment';
 import { Message as MessageType } from '../../types/message';
 
-interface MessageProps {
+type MessageProps = {
   message: MessageType
   contactUsername: string
   isSentByUser: boolean

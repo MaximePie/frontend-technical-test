@@ -1,9 +1,8 @@
 import Head from 'next/head';
 import React from 'react';
 import styles from '../../styles/Home.module.scss';
-import { UserContextProvider } from '../../contexts/UserContext';
 
-interface LayoutProps {
+type LayoutProps = {
   children: JSX.Element,
 }
 

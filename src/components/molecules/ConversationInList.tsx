@@ -6,7 +6,7 @@ import { Conversation } from '../../types/conversation';
 import APIManager from '../../server/APIManager';
 import Routes from '../../utils/routes';
 
-interface ConversationInListProps {
+type ConversationInListProps = {
   conversation: Conversation,
   connectedUserId: number,
 }

@@ -8,7 +8,7 @@ import Routes from '../../utils/routes';
 
 library.add(faArrowLeft);
 
-interface ConversationHeaderProps {
+type ConversationHeaderProps = {
   usernames: string,
   lastMessageDate: string,
 }

@@ -5,7 +5,7 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faPaperPlane);
 
-interface ConversationTextInputProps {
+type ConversationTextInputProps = {
   onMessageSend: Function
 }
 

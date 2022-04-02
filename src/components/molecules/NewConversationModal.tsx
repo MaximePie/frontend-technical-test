@@ -14,7 +14,7 @@ import { PostedConversation } from '../../types/conversation';
 
 library.add(faXmark);
 
-interface NewConversationModalProps {
+type NewConversationModalProps = {
   isOpen: boolean,
   onClose: Function,
   alreadyContactedUserIds: number[]
